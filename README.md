@@ -63,8 +63,11 @@ This outputed a long list of mostly garbage data with some exceptions... for exa
 along with some other interesting data...
 
 ```MNTHOMP_PASSWORD=ilovenickelback```
+
 ```you should run: sudo gcore -o fubar 3847 (students ignore this)```
+
 ```dMark Thompson (You're on the right track if you find this - keep digging class!) <mnthomp22@tuta.io>```
+
 ```EN=true```
 
 >2. What arguments was the program run with?
@@ -88,6 +91,14 @@ As discovered in my earlier run of ```strings fubar.core```, there were some loc
 
 
 >4. Is there any data embedded in the program? If so, what is it?
+
+To begin searching for embedded data I used binwalk, a tool meant to unpack files stuck together, so I assumed that if there was anything embedded in fubar.core file, binwalk would retrieve it. The first thing I did was simply run ```binwalk fubar.core```, this outputed:
+
+I noticed that one of the files is a JPEG file at 0x1E3C, curious to what that may be I read the binwalk manuals with ```man binwalk``` to figure out how to extract all the files in the fubar core dump, I found that I could do this using ```binwalk --dd=".*" fubar.core```. This gave me a folder called ```_fubar.core.extracted``` which when opened provided me with this picture: 
+
+
+
+(Cool)
 
 
 ## Part 3
@@ -121,5 +132,6 @@ I came across the flag as I was inspecting the HTML source of the mnthomp_beedog
 ```CMSC389R{pc4p_4n4lysis}```
 
 >5. Is there anything else interesting in the packet capture? If so, explain what it is and why you think it's interesting.
+
 
 
