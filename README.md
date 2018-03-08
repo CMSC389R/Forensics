@@ -5,6 +5,9 @@ An assignment for my Introduction to Ethical Hacking course at UMD.
 
 >1. What kind of device took the photo? What specifics can you ascertain about it (the device), and why might they be relevant?
 
+Ouput of running ```exiftool imagefun.jpg```:
+
+![alt text]()
 After running ```exiftool imagefun.jpg``` I was able to reveal the device that took the photo, it was an Apple Iphone 4S, this was revealed as the Camera Model Name. Some other interesting things about this device is that it stores its data in Big Endian, which tells us how memory addresses are stored on this device and could possibly be used to exploit the device. 
 
 Another interesting thing is the software version ```iCamera 1.2.3 last-update=2014```. Having knowledge of the software version and the last year it was updated allows us to find exploits and vulnerabilities in the devices operating system. 
@@ -97,6 +100,6 @@ So while following along with the forensics video and the live Wireshark demo, I
 
 I then tried to log onto ```irc.csec.umiacs.umd.edu/mnthomp_beedogs.html```, but I was greeted with a 404 error. I continued following the directions of the Forensics live demo and exported all objects as HTTP files, and this way I was able to reconstruct Mark's beedogs page. 
 
-![alt text]
+![alt text](https://github.com/yreiss1/Forensics/blob/master/mnthomp_beedogs.png)
 
 
