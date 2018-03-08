@@ -44,3 +44,8 @@ congrats, you made it here!
 your flag: CMSC389R-{m4rk's b4d s3cur1ty}
 ```
 
+## Part 2
+
+>1. What kind of system was the program built for? (e.g., OS, libc version, compiler version)
+
+
