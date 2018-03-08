@@ -95,9 +95,9 @@ As discovered in my earlier run of ```strings fubar.core```, there were some loc
 
 >1. What was the domain requested in the HTTP request, and what IP did it resolve to?
 
-So while following along with the forensics video and the live Wireshark demo, I opened traffic.pcap in Wireshark and searched for all http requests. A certain address that showed up was ```129.2.94.135``` after running shodan it was revealed that the address resolved to:
+So while following along with the forensics video and the live Wireshark demo, I opened traffic.pcap in Wireshark and searched for all http requests. A certain address that showed up alot was ```129.2.94.135```. Looking at the data associated with this IP address, I found the Host address to be ```irc.csec.umiacs.umd.edu```.
 
-```irc.csec.umiacs.umd.edu```
+In order to confirm this I used ```strings traffic.pcap | grep mnthomp```, which provided me with a list of the the url ```irc.csec.umiacs.umd.edu```.
 
 I then tried to log onto ```irc.csec.umiacs.umd.edu/mnthomp_beedogs.html```, but I was greeted with a 404 error. I continued following the directions of the Forensics live demo and exported all objects as HTTP files, and this way I was able to reconstruct Mark's beedogs page. 
 
@@ -105,19 +105,18 @@ I then tried to log onto ```irc.csec.umiacs.umd.edu/mnthomp_beedogs.html```, but
 
 >2. What was the relative URL of the page that was requested?
 
-The relevant URL of the page requested was ```/mnthomp_beedogs.png``` I found this by using Wireshark
+The relevant URL of the page requested was ```/mnthomp_beedogs.html``` I found this by using Wireshark.
 
 >3. Reconstruct the page (including images) and take a screenshot of it.
 
-Here it is:
+
+I exported all objects in the traffic.pcap as HTML files, when opening the beedogs.html file I noticed that there were images that wouldn't load. I inspected the page, and found that the images had to be in a file called beedogs. After inserting the images and opening ```mnthomp_beedogs.html``` I was able to see the full page in all its glory.
 
 ![alt text](https://github.com/yreiss1/Forensics/blob/master/mnthomp_beedogs.png)
 
-I exported all objects in the traffic.pcap as HTML files, when opening the beedogs.html file I noticed that there were images that wouldn't load. I inspected the page, and found that the images had to be in a file called the only thing I had to do was insert all images into a file called beedogs. After doing this and opening ```mnthomp_beedogs.html``` I was able to see the page in all its glory.
-
 >4. Find the flag (there's only one!)
 
-While inspecting the source of the mnthomp_beedogs.html file I came across the flag which is:
+I came across the flag as I was inspecting the HTML source of the mnthomp_beedogs.html hoping to find clues:
 
 ```CMSC389R{pc4p_4n4lysis}```
 
