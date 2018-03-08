@@ -7,7 +7,8 @@ An assignment for my Introduction to Ethical Hacking course at UMD.
 
 Ouput of running ```exiftool imagefun.jpg```:
 
-![alt text]()
+![alt text](https://github.com/yreiss1/Forensics/blob/master/exiftool_output.png)
+
 After running ```exiftool imagefun.jpg``` I was able to reveal the device that took the photo, it was an Apple Iphone 4S, this was revealed as the Camera Model Name. Some other interesting things about this device is that it stores its data in Big Endian, which tells us how memory addresses are stored on this device and could possibly be used to exploit the device. 
 
 Another interesting thing is the software version ```iCamera 1.2.3 last-update=2014```. Having knowledge of the software version and the last year it was updated allows us to find exploits and vulnerabilities in the devices operating system. 
@@ -100,6 +101,26 @@ So while following along with the forensics video and the live Wireshark demo, I
 
 I then tried to log onto ```irc.csec.umiacs.umd.edu/mnthomp_beedogs.html```, but I was greeted with a 404 error. I continued following the directions of the Forensics live demo and exported all objects as HTTP files, and this way I was able to reconstruct Mark's beedogs page. 
 
+
+
+>2. What was the relative URL of the page that was requested?
+
+The relevant URL of the page requested was ```/mnthomp_beedogs.png``` I found this by using Wireshark
+
+>3. Reconstruct the page (including images) and take a screenshot of it.
+
+Here it is:
+
 ![alt text](https://github.com/yreiss1/Forensics/blob/master/mnthomp_beedogs.png)
+
+I exported all objects in the traffic.pcap as HTML files, when opening the beedogs.html file I noticed that there were images that wouldn't load. I inspected the page, and found that the images had to be in a file called the only thing I had to do was insert all images into a file called beedogs. After doing this and opening ```mnthomp_beedogs.html``` I was able to see the page in all its glory.
+
+>4. Find the flag (there's only one!)
+
+While inspecting the source of the mnthomp_beedogs.html file I came across the flag which is:
+
+```CMSC389R{pc4p_4n4lysis}```
+
+>5. Is there anything else interesting in the packet capture? If so, explain what it is and why you think it's interesting.
 
 
