@@ -5,11 +5,11 @@ An assignment for my Introduction to Ethical Hacking course at UMD.
 
 >1. What kind of device took the photo? What specifics can you ascertain about it (the device), and why might they be relevant?
 
-Ouput of running ```exiftool imagefun.jpg```:
+Immediately I thought back to the lecture slides and realized that exiftool would be the perfect tool for this scenario, so I ran ```exiftool imagefun.jpg``` and got this:
 
 ![alt text](https://github.com/yreiss1/Forensics/blob/master/exiftool_output.png)
 
-After running ```exiftool imagefun.jpg``` I was able to reveal the device that took the photo, it was an Apple Iphone 4S, this was revealed as the Camera Model Name. Some other interesting things about this device is that it stores its data in Big Endian, which tells us how memory addresses are stored on this device and could possibly be used to exploit the device. 
+With this output I was able to reveal the device that took the photo, it was an Apple Iphone 4S, this was revealed as the Camera Model Name. Some other interesting things about this device is that it stores its data in Big Endian, which tells us how memory addresses are stored on this device and could possibly be used to exploit the device. 
 
 Another interesting thing is the software version ```iCamera 1.2.3 last-update=2014```. Having knowledge of the software version and the last year it was updated allows us to find exploits and vulnerabilities in the devices operating system. 
 
@@ -93,6 +93,9 @@ This revealed that fubar was run without any arguments, but simply like this:
 
 ```./fubar```
 
+I ran ```file fubar.core``` to verify that the program was not run with any arguments, and as expected it returned:
+```fubar.core: ELF 64-bit LSB core file x86-64, version 1 (SYSV), SVR4-style, from './fubar'``` confirming that the program was not run with arguments.
+
 
 >3. What was in the program's environment when it was dumped?
 
@@ -125,14 +128,14 @@ I noticed that one of the files is a JPEG file at 0x1E3C, curious to what that m
 
 So while following along with the forensics video and the live Wireshark demo, I opened traffic.pcap in Wireshark and searched for all http requests. A certain address that showed up alot was ```129.2.94.135```. Looking at the data associated with this IP address, I found the Host address to be ```irc.csec.umiacs.umd.edu```.
 
-In order to confirm this I used ```strings traffic.pcap | grep mnthomp```, which provided me with a list of the the url ```irc.csec.umiacs.umd.edu```.
+In order to confirm this I used ```strings traffic.pcap | grep mnthomp```, which provided me with a list of the the url: ```irc.csec.umiacs.umd.edu```.
 
 I then tried to log onto ```irc.csec.umiacs.umd.edu/mnthomp_beedogs.html```, but I was greeted with a 404 error. I continued following the directions of the Forensics live demo and exported all objects as HTTP files, and this way I was able to reconstruct Mark's beedogs page. 
 
 
 >2. What was the relative URL of the page that was requested?
 
-The relevant URL of the page requested was ```/mnthomp_beedogs.html``` I found this by using Wireshark.
+The relevant URL of the page requested was ```/mnthomp_beedogs.html``` I found this by searching for only HTTP connections using Wireshark.
 
 >3. Reconstruct the page (including images) and take a screenshot of it.
 
@@ -149,4 +152,6 @@ I came across the flag as I was inspecting the HTML source of the mnthomp_beedog
 
 >5. Is there anything else interesting in the packet capture? If so, explain what it is and why you think it's interesting.
 
-Something that I found interesting was that there was a brief SSH session with an address ```10.2.0.15``` which had also communicated with the website through HTTP requests.
+Something that I found interesting was that there was a brief SSH session with an address ```10.2.0.15``` which had also communicated with the website through HTTP requests. I think this is interesting because that means that there is an SSH port open, which means that we could potentialy use remote wireshark over SSH to analyze traffic remotely!
+
+
