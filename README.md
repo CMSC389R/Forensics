@@ -50,7 +50,7 @@ your flag: CMSC389R-{m4rk's b4d s3cur1ty}
 
 Everytime I looked at the thumbnail of imagefun.jpg I assumed I would see that rad dude throw up some peace signs, but that was not at all the case, instead I would see a small white box with some barely visible text, so I decided to investigate further. I used ```binwalk imagefun.jpg``` to uncover hidden files, and with success I found another JPEG file. I then ran ```binwalk --dd=".*" imagefun.jpg``` after looking through ```man binwalk``` to try to extract the hidden files. After running this command I was able to obtain the picture below which is the second flag:
 
-![alt text](https://github.com/yreiss1/Forensics/blob/master/exiftool_output.png)
+![alt text](https://github.com/yreiss1/Forensics/blob/master/25C.jpg)
 
 
 ## Part 2
@@ -102,7 +102,7 @@ To begin searching for embedded data I used binwalk, a tool meant to unpack file
 I noticed that one of the files is a JPEG file at 0x1E3C, curious to what that may be I read the binwalk manuals with ```man binwalk``` to figure out how to extract all the files in the fubar core dump, I found that I could do this using ```binwalk --dd=".*" fubar.core```. This gave me a folder called ```_fubar.core.extracted``` which when opened provided me with this picture: 
 
 
-![alt text](https://github.com/yreiss1/Forensics/blob/master/exiftool_output.png)
+![alt text](https://github.com/yreiss1/Forensics/blob/master/1E3C.jpg)
 
 
 (Cool)
