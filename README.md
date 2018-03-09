@@ -107,6 +107,8 @@ As discovered in my earlier run of ```strings fubar.core```, there were some loc
 
 To begin searching for embedded data I used binwalk, a tool meant to unpack files stuck together, so I assumed that if there was anything embedded in fubar.core file, binwalk would retrieve it. The first thing I did was simply run ```binwalk fubar.core```, this outputed:
 
+![alt text](https://github.com/yreiss1/Forensics/blob/master/some_file.png)
+
 I noticed that one of the files is a JPEG file at 0x1E3C, curious to what that may be I read the binwalk manuals with ```man binwalk``` to figure out how to extract all the files in the fubar core dump, I found that I could do this using ```binwalk --dd=".*" fubar.core```. This gave me a folder called ```_fubar.core.extracted``` which when opened provided me with this picture: 
 
 
