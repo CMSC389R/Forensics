@@ -61,9 +61,17 @@ The first thing I did was to run the strings command on the core dump to simply 
 
 ```strings fubar.core```
 
-This outputed a long list of mostly garbage data with some exceptions... for example I found the operating system, libc version, and compiler version on one line: 
+This outputed a long list of mostly garbage data with some exceptions... for example I found the operating system, and compiler version on one line: 
 
 ```GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609```
+
+libc versions found:
+
+```
+/lib/x86_64-linux-gnu/libc-2.23.so
+/lib/x86_64-linux-gnu/libc.so.6
+
+```
 
 along with some other interesting data...
 
@@ -139,5 +147,4 @@ I came across the flag as I was inspecting the HTML source of the mnthomp_beedog
 
 >5. Is there anything else interesting in the packet capture? If so, explain what it is and why you think it's interesting.
 
-
-
+Something that I found interesting was that there was a brief SSH session with an address ```10.2.0.15``` which had also communicated with the website through HTTP requests.
